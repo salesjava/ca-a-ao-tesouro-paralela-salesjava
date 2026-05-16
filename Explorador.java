@@ -4,9 +4,19 @@
  */
 public abstract class Explorador {
     
-    // * Construtor que inicializa todos os atributos do explorador.
+    // Atributos encapsulados requeridos
+    private String nome;
+    private String tipo;
+    private int prioridade;
+    private String tarefa;
     
-
+    // * Construtor que inicializa todos os atributos do explorador.
+    public Explorador(String nome, String tipo, int prioridade, String tarefa) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.prioridade = prioridade; // CORRIGIDO: de priority para prioridade
+        this.tarefa = tarefa;
+    }
 
     /**
      * Método abstrato que deve ser implementado pelas subclasses.
@@ -19,11 +29,20 @@ public abstract class Explorador {
      * Exibe o status completo do explorador com formatação clara.
      */
     public void exibirStatus() {
-
+        System.out.println("Explorador: " + this.nome);
+        System.out.println("Tipo: " + this.tipo);
+        System.out.println("Prioridade: " + this.prioridade);
+        System.out.println("Tarefa: " + (this.tarefa == null || this.tarefa.isEmpty() ? "[Nenhuma]" : this.tarefa));
     }
     
     // Getters para acesso aos atributos encapsulados
+    public String getNome() { return nome; }
+    public String getTipo() { return tipo; }
+    public int getPrioridade() { return prioridade; }
+    public String getTarefa() { return tarefa; }
 
-
+    // Setter para sincronizar a prioridade da classe com a da Thread se necessário
+    public void setPrioridade(int prioridade) {
+        this.prioridade = prioridade;
+    }
 }
-
